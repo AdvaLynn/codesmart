@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<!-- HTML5 Hello world by kirupa - http://www.kirupa.com/html5/getting_your_feet_wet_html5_pg1.htm -->
+<html lang="en-us">
+
+<head>
+	<meta charset="utf-8">
+	<title>If You Code, CodeSmart</title>
+	<link href="http://fonts.googleapis.com/css?family=Corben" rel="stylesheet" type="text/css"> 
+ 	<link href="http://fonts.googleapis.com/css?family=Nobile" rel="stylesheet" type="text/css">
+ 	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Tangerine">
+	
+	<style type="text/css">
+	
+	#mainContent {
+		font-family: 'Nobile', Helvetica, Arial, sans-serif;
+		font-size: x-large;
+		font-weight: bold;
+		background-color: #E3F0FB;
+		border-radius: 4px;
+		padding: 10px;
+		text-align: center;
+	}
+	
+	#require, #choices th {
+		text-align: center;
+		padding: 2%;
+	}
+	
+	#code_display, #choices th {
+		border-width: 16%;
+		border-style: hidden;
+		opacity: 0.7; 
+	}
+	
+	#code_display {
+		padding: 2%;
+		background: white;
+	}
+	
+	#choices th {
+		background: #53bab0;
+	}
+		
+	.cb {
+		font: Georgia;
+		width: 16%;
+		text-align: left;
+	}
+	
+	.header {
+		background: url(Images/congruent_pentagon.png) repeat 0 0;
+		font-family: 'Corben', Georgia, Times, serif;
+		background-color: #c6ffe5;
+	}
+
+	body {
+		margin: 0px;
+	}
+	
+	.body {
+		background-image: url(Images/background.jpeg);
+		
+	}
+	
+	h1 {
+		margin: 0% 15% 0% 15%;
+		padding-top: 5%;
+		padding-bottom: 5%;
+		text-shadow: 5px 1px 1px #ccc;
+	}
+	
+	.box {
+		margin: 2% 15% 2% 15%;
+		font-family: Georgia;
+		font-size: 17px;
+		color: #020028;
+	}
+	
+	.bs {
+		font-weight: bold;
+		background-color: #ffffff;
+		opacity: 0.7;
+		font-size: 20px;
+	}
+	
+	.bs p {
+		padding: 2%;
+	}
+	
+	.rq {
+		display: block;
+	}
+	
+	.rq th{
+		width: 200px;
+		background-color: white;
+		opacity: 0.7;
+	}
+	
+	.rqt th{
+		background-color: #a8f4e6;
+	}
+	
+	#rc1, #rc2, #rc3 {
+		display: None;
+	}
+	
+	#instruct, #blanks {
+		margin-top: 0px;
+		background-color: #a8f4e6;
+		opacity: 0.7;
+	}
+	
+	#next, #submit {
+		margin: 5px;
+	}
+	
+	#next {
+		visibility: hidden;
+	}
+	
+	.inst {
+		font-family: Georgia;
+		margin: 0% 15% 2% 15%;
+		padding: 2%;
+		background-color: transparent;
+		font-size: 20px;
+	}
+	
+	.copyright {
+		color: #e5eae9;
+		font-family: Georgia;
+		font-size: 12px;
+		text-align: center;
+		padding-bottom: 10px;
+	}
+	
+	</style>
+</head>
+
+<body>
+	<div class="header">
+		<h1>If You Code, CodeSmart</h1>
+		
+	</div>
+	
+	<div class="body" id="main">
+		<div class="box inst bs" id="instruct">
+			<strong>Instructions:</strong>
+			<br><br>
+			<ul>
+				<li>To complete the level, choose the appropriate code block from every column</li>
+				<li>The level header tells you what goodies you are using</li>
+				<li>The IF / THEN chart tells you which number range to use</li>
+				<li>Use IF / ELSE IF / ELSE in order, at most once per level</li>
+				<li>When using ELSE, remember to leave the next 2 boxes blank</li>
+				<li>When done, click SUBMIT in the bottom left corner</li>
+			</ul>
+		</div>
+		
+		<div class="box bs"><p id="level"></p></div>
+		
+		<div class="box" id="require">
+		<table>
+			<tr class="rq rqt">
+				<th><p>IF you have...</p></th>
+				<th><p>THEN you are...</p></th>
+			</tr>
+			<tr class="rq" id="rc1">
+				<th><p id="r1"></p></th>
+				<th><p id="c1"></p></th>
+			</tr>
+			<tr class="rq" id="rc2">
+				<th><p id="r2"></p></th>
+				<th><p id="c2"></p></th>
+			</tr>
+			<tr class="rq" id="rc3">
+				<th><p id="r3"></p></th>
+				<th><p id="c3"></p></th>
+			</tr>
+		</table>
+		</div>
+		
+		<div class="box bs" id="blanks">
+			<p>&nbsp;&nbsp;&nbsp;&nbsp;_____ &nbsp;&nbsp; the number of &nbsp;&nbsp;_____ &nbsp;&nbsp;
+			is in range of&nbsp;&nbsp;_____,&nbsp;&nbsp;then you are &nbsp;&nbsp;_____.</p>
+		</div>
+		
+		<div class="box" id="code_display">
+			<p id="display1"></p>
+			<p id="display2"></p>
+			<p id="display3"></p>
+		</div>
+		
+		<!-- <div class="box" id="code_display">
+			<p>PYTHON CODE GENERATED:</p>
+			<p id="python1"></p>
+			<p id="python2"></p>
+			<p id="python3"></p>
+		</div> -->
+		
+		<div class="box" id="error"></div>
+		
+		<div class="box" id="choices">
+		<table>
+		  <tr>
+		    <th class="cb"><input type="radio" name="if" value="IF"><p>IF</p></th>
+		    <th class="cb"><input type="radio" name="var" value="CANDIES">
+		    	<p>CANDY <img class="pic" id="v1" width="15%"></p>
+		    </th> 
+		    <th class="cb"><input type="radio" name="exp" value="0 ~ 4"><p>0 ~ 4</p></th>
+		    <th class="cb"><input type="radio" name="stmt" value="HAPPY"><p>HAPPY</p></th>
+		  </tr>
+		  <tr>
+		    <th class="cb"><input type="radio" name="if" value="ELSE IF"><p>ELSE IF</p></th>
+		    <th class="cb"><input type="radio" name="var" value="CHOCOLATES">
+		    	<p>CHOCOLATE <img class="pic" id="v2" width="20%"></p>
+		    </th> 
+		    <th class="cb"><input type="radio" name="exp" value="5 ~ 9"><p>5 ~ 9</p></th>
+		    <th class="cb"><input type="radio" name="stmt" value="SICK"><p>SICK</p></th>
+		  </tr>
+		  <tr>
+		    <th class="cb"><input type="radio" name="if" value="ELSE"><p>ELSE</p></th>
+		    <th class="cb"><input type="radio" name="var" value="COOKIES">
+		    	<p>COOKIE <img class="pic" id="v3" width="15%"></p>
+		    </th> 
+		    <th class="cb"><input type="radio" name="exp" value="10+"><p>10+</p></th>
+		    <th class="cb"><input type="radio" name="stmt" value="SAD"><p>SAD</p></th>
+		  </tr>
+		  <tr>
+		  	<th class="cb"></th>
+		  	<th class="cb"><input type="radio" name="var" value="NOTHING"><p>[blank]</p></th>
+		  	<th class="cb"><input type="radio" name="exp" value="NOTHING"><p>[blank]</p></th>
+		  	<th class="cb"></th>
+		  </tr>
+		</table>
+		</div>
+		
+		<div class="box">
+			<button id="submit" onclick="submit()">Submit</button>
+			<button id="next" onclick="nextLevel()">Next Level</button>
+		</div>
+		
+		<div class="box bs"><p id="points"></p></div>
+		<div class="copyright"> 
+		<strong>Made at WiCHacks 2017 by the Edu Candy team!</strong>
+		</div>
+	</div>
+	
+	
+	
+	<script>
+	
+		var points = 0;
+
+		var if_pressed = false;
+		var elseif_pressed = false;
+		var else_pressed = false;
+		var buttons = new Array(4);
+		
+		var levelvariables = {
+		    1 : "COOKIES",
+		    2 : "CHOCOLATES",
+		    3 : "CANDIES"
+		};
+		
+		var leveloutcomes = {
+		    "0 ~ 4" : "SAD",
+		    "5 ~ 9" : "HAPPY",
+		    "10+" : "SICK"
+		}; //1 : "5 ~ 9" ; 2 : "0 ~ 4", "5 ~ 9"; 3 : "0 ~ 4", "5 ~ 9", "10+"
+		
+		
+		// var allbuttonanswers = [["if", "else if", "else"], ["COOKIES", "CHOCOLATES", "CANDIES"], ["0 ~ 4", "5 ~ 9", "10+"], ["SAD", "HAPPY", "SICK"]];
+		
+		// var allbuttons = result of a function in html;
+		
+		function check_buttons(allbuttons) {
+			//add in a block to check, if elseif_pressed, then else_pressed too
+			if (allbuttons.length != 4) {
+				return false;
+			}
+			
+			if (allbuttons[0] == "IF") {
+		    	if_pressed = true;
+			}
+		    else if (allbuttons[0] == "ELSE IF") {
+		        if (!if_pressed) {
+		        	//document.write("point1");
+		            return false;
+		        }
+		        elseif_pressed = true;
+		    }
+		    else if (allbuttons[0] == "ELSE") {
+		        if (!if_pressed) {
+		        	//document.write("point2");
+		            return false;
+		        }
+		        else_pressed = true;
+		    }
+		    else {
+		    	//document.write("point3");
+		        return false;
+		    }
+		    
+		    if (else_pressed) {
+		    	if (allbuttons[1] != "NOTHING" && allbuttons[2] != "NOTHING") {
+		    		//document.write(allbuttons[1]);
+		    		//document.write("point4");
+		    		return false;
+		    	}
+	    		return true;
+		    } else {
+		    	if (allbuttons[1] != levelvariables[level]) {
+		    		//document.write(level);
+		    		//document.write("1 != level");
+		    		//document.write("point5");
+		    		return false;
+		    	}
+			    if (allbuttons[3] != leveloutcomes[allbuttons[2]]) {
+			    	//document.write("3 != 2");
+			    	//document.write("point6");
+			        return false;
+		    	}
+		    	return true;
+		    }
+		}
+	
+	
+	
+		// FEI'S CODE!!!!!!
+		var index = 0;
+		var level = 1;
+		var rArray = ["5 ~ 9","10+","0 ~ 4"];
+		var reqArray = ["r", "c"];
+		var bArray = ["if", "var", "exp", "stmt"];
+		
+		
+		
+		function setLevel(level) {
+			if (level > 3) {
+				document.getElementById("error").textContent = "";
+				document.getElementById("points").textContent = "Points: " + points.toString();
+				document.getElementById("display1").textContent = "YOU PASSED";
+				document.getElementById("display2").textContent = "";
+				document.getElementById("display3").textContent = "";
+				// document.getElementById("python1").textContent = "";
+				// document.getElementById("python2").textContent = "";
+				// document.getElementById("python3").textContent = "";
+			} else {
+				if_pressed = false;
+		        elseif_pressed = false;
+		        else_pressed = false;
+				index = 0;
+				unClick();
+				
+				document.getElementById("points").textContent = "Points: " + points.toString();
+				document.getElementById("error").textContent = "";
+				document.getElementById("display1").textContent = "";
+				document.getElementById("display2").textContent = "";
+				document.getElementById("display3").textContent = "";
+				// document.getElementById("python1").textContent = "";
+				// document.getElementById("python2").textContent = "";
+				// document.getElementById("python3").textContent = "";
+				for (var i = 1; i <= level; i++) {
+					document.getElementById("rc" + i.toString()).style.display = "block";
+				}
+				setContent(level);
+			}
+		}
+		
+		function nextLevel(){
+			points = points + (level * 5);
+			level = level + 1;
+			document.getElementById("next").style.visibility = "hidden";
+			setLevel(level);
+		}
+		
+		function setContent(level) {
+			document.getElementById("level").textContent = "Level " + level.toString() + ": Determine your emotion, given an amount of " + levelvariables[level];
+			document.getElementById("v1").src = "Images/candy_lollipop.png";
+			document.getElementById("v2").src = "Images/chocolate_bar.png";
+			document.getElementById("v3").src = "Images/gingerman.png";
+			
+			for (var t = 0; t < 2; t++){
+				for (var i = 0; i < level; i++) {
+					var name = reqArray[t] + (i + 1).toString();
+					if (t == 0) {
+						document.getElementById(name).textContent = rArray[i];
+					} else {
+						document.getElementById(name).textContent = leveloutcomes[rArray[i]];
+					}
+				}
+			}
+		}
+		
+		setLevel(1);
+		
+		function isClicked(id) {
+			return document.getElementById(id);
+		}
+		
+		function unClick() {
+			for (var b = 0; b < 4; b++) {
+				var ele = document.getElementsByName(bArray[b]);
+				for(var i = 0; i < ele.length; i++) {
+					ele[i].checked = false;
+				}
+			}
+		}
+		
+		function displayArray(checked, index) {
+			var display;
+			// var python;
+			if (checked[0] == "ELSE") {
+				display = checked[0] + " you are " + checked[3];
+				// python = checked[0] + ": emotion = " + checked[3];
+			} else {
+				display = checked[0] + " the number of " + checked[1] + " is in range of ";
+				display = display + checked[2] + ", then you are " + checked[3] + ".";
+				// python = checked[0] + " " + checked[1] + " in range(" + checked[2] + "):";
+				// python = python + " emotion = " + checked[3];
+			}
+			
+			// document.getElementById("python" + index.toString()).textContent = python;
+			document.getElementById("display" + index.toString()).textContent = display;
+		}
+		
+		function submit() {
+			if (document.getElementById("next").style.visibility == "visible") {
+				return;
+			}
+			
+			var checked = [];
+			var pass = true;
+			
+			for (var b = 0; b < 4; b++) {
+				var a = document.getElementsByName(bArray[b]);
+				for (var i = 0; i < a.length; i++) {
+					if (a[i].checked) {
+						checked.push(a[i].value);
+					}
+				}
+			}
+			
+			pass = check_buttons(checked);
+			//document.write(pass);
+			
+			if (!pass) {
+				setLevel(level);
+			} else {
+				index++;
+				unClick();
+				displayArray(checked, index);
+			}
+
+			if (index == level) {
+				document.getElementById("next").style.visibility = "visible";
+			}
+		}
+		
+	</script>
+
+</body>
+</html>
